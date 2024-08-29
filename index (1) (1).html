@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
+    <style>
+      @keyframes blink {
+        0% {
+          box-shadow: 0 0 3px 3px rgb(255, 255, 255), inset 0 0 1px 1px #222;
+        }
+
+        50% {
+          box-shadow: 0 0 1px 2px #b0b0b0, inset 0 0 1px 1px #222;
+        }
+
+        100% {
+          box-shadow: 0 0 3px 3px rgb(255, 255, 255), inset 0 0 1px 1px #222;
+        }
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        background: #000;
+        margin: 0;
+        font-family: "Signika Negative", sans-serif, Arial;
+      }
+
+      .section-wrapper {
+        height: 400vh;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+
+      #section-1 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+      }
+
+      .section-2 {
+        height: 100vh;
+      }
+
+      .hero-animation {
+        position: absolute !important;
+        width: 100%;
+        height: 100%;
+        font-weight: 600;
+        font-size: 1.5em;
+        text-align: center;
+        color: white;
+        position: relative;
+        box-sizing: border-box;
+        padding: 10px;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        will-change: transform;
+      }
+
+      .hero-animation button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hero-animation.zero {
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
+      }
+
+      .zero p {
+        max-width: 500px;
+      }
+      .zero {
+        width: 100%;
+      }
+
+      .hero-animation.first {
+        background-image: url("https://static.wixstatic.com/media/7e4df0_ef2fbeb5c1774b3796762337be1b9428~mv2.png");
+        background-size: cover;
+        clip-path: polygon(
+          0% 0%,
+          0% 100%,
+          calc(50% - 4vh) 100%,
+          calc(50% - 4vh) 40%,
+          calc(50% + 4vh) 40%,
+          calc(50% + 4vh) 59%,
+          calc(50% - 4vh) 59%,
+          calc(50% - 4vh) 100%,
+          100% 100%,
+          100% 0%
+        );
+      }
+
+      .hero-animation.second {
+        background-image: url("https://static.wixstatic.com/media/7e4df0_886954ae0655452889c747f555adeef7~mv2.png");
+        background-size: cover;
+        clip-path: polygon(
+          0% 0%,
+          0% 100%,
+          calc(50% - 12vh) 100%,
+          calc(50% - 12vh) 43%,
+          calc(50% + 12vh) 43%,
+          calc(50% + 12vh) 56%,
+          calc(50% - 12vh) 56%,
+          calc(50% - 12vh) 100%,
+          100% 100%,
+          100% 0%
+        );
+      }
+
+      .hero-animation.third {
+        background-image: url("https://static.wixstatic.com/media/7e4df0_262d9de32d884a0183dfe7c8302b5a8f~mv2.png");
+        background-size: cover;
+      }
+
+      .element {
+        cursor: pointer;
+        position: absolute;
+        min-height: 15px;
+        min-width: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 1px 2px #b0b0b0, inset 0 0 1px 1px #222;
+        background-color: #ddd;
+        border-radius: 50%;
+        -webkit-animation: blink 3s linear infinite;
+        -moz-animation: blink 3s linear infinite;
+        -ms-animation: blink 3s linear infinite;
+        -o-animation: blink 3s linear infinite;
+        animation: blink 1.5s linear infinite;
+      }
+
+      .element.e20 {
+        top: calc(50% + 6vh);
+        left: calc(50% - 5.5vh);
+      }
+
+      .element.e21 {
+        top: calc(50% + 0.5vh);
+        left: calc(50% + 5.5vh);
+      }
+
+      .element.el1 {
+        top: calc(50% - 3vh);
+        left: calc(50% - 15vh);
+      }
+
+      .element.el2 {
+        top: calc(50% - 3vh);
+        left: calc(50% + 8.8vh);
+      }
+
+      .element.el3 {
+        top: calc(50% - 11.5vh);
+        left: calc(50% + 53vh);
+      }
+
+      .element.el4 {
+        top: calc(50% - 12vh);
+        left: calc(50% - 15vh);
+      }
+
+      .element.el5 {
+        top: calc(50% - 26.2vh);
+        left: calc(50% - 48vh);
+      }
+
+      .element.el6 {
+        top: calc(50% - 10.5vh);
+        left: calc(50% - 75vh);
+      }
+
+      .element.el7 {
+        top: calc(50% + 14.5vh);
+        left: calc(50% - 77vh);
+      }
+
+      .element.el8 {
+        top: calc(50% - 26vh);
+        left: calc(50% + 47vh);
+      }
+
+      .element.el9 {
+        top: calc(50% + 5vh);
+        left: calc(50% - 21vh);
+      }
+
+      .element.el10 {
+        top: calc(50% + 9vh);
+        left: calc(50% + 33vh);
+      }
+
+      .element.el11 {
+        top: calc(50% + 14vh);
+        left: calc(50% - 52.5vh);
+      }
+
+      .element:hover {
+        box-shadow: 0 0 2px 2px #fff;
+        background-color: #fff;
+      }
+
+      .img-fluid {
+        max-width: 100%;
+      }
+
+      .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20vh;
+      }
+      .flex h2 {
+        font-size: 70px;
+        margin-bottom: 2px;
+        margin-top: 0px;
+      }
+      .flex p {
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 22px;
+      }
+
+      .flexTwo button {
+        padding: 10px 50px;
+        margin: 10px;
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 20px;
+        border: 1px solid rgb(255, 255, 255);
+        color: white;
+      }
+      .flexTwo button:hover {
+        background-color: rgb(0, 0, 0);
+        border: 1px solid black;
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+      .flexx {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 30vh;
+      }
+      .flexx .buttons {
+        font-size: 14px;
+        margin-top: 15px;
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        padding: 10px;
+        /* padding-top: 30px;
+        margin-top: 50px; */
+        color: white;
+        cursor: pointer;
+      }
+      .flexx .buttons:hover {
+        color: black;
+        transition: all 0.5s;
+      }
+      .flexx p {
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 200;
+      }
+      .flexx .start_exp {
+        padding: 10px 50px;
+        margin: 10px;
+        background-color: transparent;
+        font-weight: 600;
+        border-radius: 20px;
+        border: 1px solid rgb(255, 255, 255);
+        color: white;
+        -webkit-animation: blink 3s linear infinite;
+        -moz-animation: blink 3s linear infinite;
+        -ms-animation: blink 3s linear infinite;
+        -o-animation: blink 3s linear infinite;
+        animation: blink 1.5s linear infinite;
+      }
+      .flexx .start_exp:hover {
+        background-color: rgb(0, 0, 0);
+        border: 1px solid black;
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+      .flexx .one {
+        width: 400px;
+      }
+      .flexx .two {
+        width: 400px;
+      }
+      .flexx .three {
+        width: 400px;
+      }
+      .tooltip_class{
+        display:flex; justify-content: center; align-items: center; color: white;
+      }
+      .tooltip_class p {
+        padding: 20px;
+      }
+      /*# sourceMappingURL=index.css.map */
+    </style>
+    <script>
+      if(window.innerWidth < 600){
+        alert("Rotate your phone for 90 degrees for better experience!");
+      }
+      function goToShop() {
+        window.top.location.href = "https://www.my-grey.com/blank";
+      }
+
+      function goToTerms() {
+        window.top.location.href = "";
+      }
+
+      function goToPrivacy() {
+        window.top.location.href = "";
+      }
+
+      function goToContact() {
+        window.top.location.href = "https://www.my-grey.com/blank-2";
+      }
+
+      function scrollMe() {
+        var viewportHeight = window.innerHeight * 1.32;
+        window.scroll({
+          top: viewportHeight,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="section-wrapper">
+      <section id="section-1">
+        <div class="hero-animation zero">
+          <div>
+            <div class="flex">
+              <div>
+                <h2>
+                  This is <br />
+                  just a Header
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatum dolores hic exercitationem.
+                </p>
+                <div class="flexTwo">
+                  <button onclick="goToShop()">Shop now</button
+                  ><button onclick="goToContact()">Contact us</button>
+                </div>
+              </div>
+            </div>
+            <div class="flexx">
+              <div class="one">
+                <button class="buttons" onclick="goToPrivacy()">
+                  Privacy policy
+                </button>
+                <button class="buttons" onclick="goToTerms()">
+                  Terms and conditions
+                </button>
+              </div>
+              <div class="two">
+                <button class="start_exp" onclick="scrollMe()">
+                  Start the experience
+                </button>
+              </div>
+              <div class="three"><p>Volume @ 2024</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-animation first">
+          <div class="element el1"></div>
+
+          <div class="element el2"></div>
+          <div class="element el3"></div>
+          <div class="element el4"></div>
+          <div class="element e20"></div>
+          <div class="element e21"></div>
+        </div>
+        <div class="hero-animation second">
+          <div class="element el5"></div>
+          <div class="element el6"></div>
+          <div class="element el7"></div>
+        </div>
+        <div class="hero-animation third">
+          <div class="element el8"></div>
+          <div class="element el9"></div>
+          <div class="element el10"></div>
+          <div class="element el11"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- Production -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+      console.clear();
+
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from(".hero-animation:not(:last-child)", {
+        opacity: 1,
+      });
+
+      gsap.to(".hero-animation:not(:last-child)", {
+        //yPercent: -100,
+        ease: "none",
+        stagger: 0.5,
+
+        //delay: 2,
+        // immediateRender: false,
+        scrollTrigger: {
+          //  anticipatePin: 1, // may help avoid jump
+
+          trigger: "#section-1",
+          start: "center center",
+          end: "+=400%",
+          scrub: true,
+          pin: true,
+
+          onUpdate: (self) => {
+            var progress = self.progress.toFixed(2);
+            console.log(progress);
+            var minX, maxX, minY, maxY, normalizedX, result;
+
+            if (self.progress.toFixed(2) < 0.1) {
+              gsap.set(".zero", { zIndex: 4 });
+              gsap.set(".first", { zIndex: 3 });
+              gsap.set(".second", { zIndex: 2 });
+              gsap.set(".third", { zIndex: 1 });
+              gsap.to(".zero", {
+                opacity: 1 - self.progress.toFixed(2) * 4,
+              });
+              gsap.to(".first, .second", {
+                scale: 1,
+                // overwrite: true,
+              });
+              //
+            } else if (
+              self.progress.toFixed(2) >= 0.1 &&
+              self.progress.toFixed(2) < 0.32
+            ) {
+              gsap.to(".zero", {
+                opacity: 1 - self.progress.toFixed(2) * 4,
+              });
+            } else if (
+              self.progress.toFixed(2) >= 0.33 &&
+              self.progress.toFixed(2) < 0.67
+            ) {
+              gsap.set(".zero", { zIndex: 1 });
+              gsap.set(".first", { zIndex: 4 });
+              gsap.set(".second", { zIndex: 3 });
+              gsap.set(".third", { zIndex: 2 });
+              minX = 0.33;
+              maxX = 0.66;
+              minY = 1;
+              maxY = 30;
+
+              // Normalize x to range from 0 to 1
+              normalizedX = (progress - minX) / (maxX - minX);
+
+              // Interpolate to the desired range
+              result = minY + normalizedX * (maxY - minY);
+              if (result.toFixed(2) < 1) {
+                result = 1;
+              }
+              // console.log(result);
+              gsap.to(".first", {
+                scale: result.toFixed(2),
+                // overwrite: true,
+              });
+              //
+            } else if (
+              self.progress.toFixed(2) >= 0.67 &&
+              self.progress.toFixed(2) < 0.99
+            ) {
+              gsap.set(".zero", { zIndex: 1 });
+              gsap.set(".first", { zIndex: 2 });
+              gsap.set(".second", { zIndex: 4 });
+              gsap.set(".third", { zIndex: 3 });
+              minX = 0.67;
+              maxX = 0.98;
+              minY = 1;
+              maxY = 10;
+              gsap.to(".first", {
+                scale: 30,
+                // overwrite: true,
+              });
+              // Normalize x to range from 0 to 1
+              normalizedX = (progress - minX) / (maxX - minX);
+
+              // Interpolate to the desired range
+              result = minY + normalizedX * (maxY - minY);
+              console.log(result);
+              if (result.toFixed(2) < 1) {
+                result = 1;
+              }
+              gsap.to(".second", {
+                scale: result.toFixed(2),
+                // overwrite: true,
+              });
+            } else if (self.progress.toFixed(2) >= 1) {
+              gsap.set(".zero", { zIndex: 1 });
+              gsap.set(".first", { zIndex: 2 });
+              gsap.set(".second", { zIndex: 3 });
+              gsap.set(".third", { zIndex: 4 });
+            }
+          },
+        },
+      });
+
+      gsap.set(".hero-animation", {
+        zIndex: (i, target, targets) => targets.length - i,
+        scale: 1,
+      });
+    </script>
+
+    <script>
+      // With the above scripts loaded, you can call `tippy()` with a CSS
+      // selector and a `content` prop:
+      tippy(".el1", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        placement: "left",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_87c7df9d888344c88acefda7cfdbd414~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Smart garage door opener</h3> <p> Never again worry you left the garage door open. Close it right from your phone and breathe easy knowing your home’s safe.</p></div></button>',
+        allowHTML: true,
+      });
+      tippy(".el2", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        placement: "right",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_f04707a52e7d43f8b0c0fc3ccd20ffe7~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Doorbell Camera</h3> <p>The Doorbell Camera combines convenience and security, allowing you to see, hear, and speak to visitors at your door from anywhere using your smartphone. It features HD video, two-way audio, and motion alerts.</p></div></button>',
+          allowHTML: true,
+      });
+      tippy(".el3", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5b4355987aea4f6c8b23ccd3a3eadb48~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Outdoor Camera</h3> <p>The Outdoor Camera provides robust security for your home, offering high-definition video, night vision, and motion detection to monitor your property 24/7, no matter the weather conditions.</p></div></button>',
+          allowHTML: true,
+      });
+
+      tippy(".el4", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        placement: "left",
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5b4355987aea4f6c8b23ccd3a3eadb48~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Outdoor Camera</h3> <p>The Outdoor Camera provides robust security for your home, offering high-definition video, night vision, and motion detection to monitor your property 24/7, no matter the weather conditions.</p></div></button>',
+          allowHTML: true,
+      });
+      tippy(".el5", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_a1af55355d9942209c762b109e7e8ee1~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Smoke and Carbon Monoxide Detector</h3> <p>The Smoke and Carbon Monoxide Detector provides dual protection for your home, detecting both smoke and carbon monoxide. It features loud alarms and sends real-time alerts to your smartphone for prompt action.</p></div></button>',
+         allowHTML: true,
+      });
+      tippy(".el6", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5cafa22883d2414aa84afcf2bfa0ffcd~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Glass Break Detector</h3> <p>The Glass Break Detector enhances your home security by recognizing the sound of breaking glass and triggering an alarm. It helps protect your windows and sliding doors from intruders.</p></div></button>',
+        allowHTML: true,
+      });
+      tippy(".el7", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_080fd155f301406ca407f07c84d2f1a8~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Water Sensor</h3> <p>The Water Sensor helps prevent water damage by detecting leaks and flooding early. It sends instant alerts to your smartphone, allowing you to take immediate action to protect your home.</p></div></button>',
+         allowHTML: true,
+      });
+      tippy(".el8", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        placement: "bottom",
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5cafa22883d2414aa84afcf2bfa0ffcd~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Glass Break Detector</h3> <p>The Glass Break Detector enhances your home security by recognizing the sound of breaking glass and triggering an alarm. It helps protect your windows and sliding doors from intruders.</p></div></button>',
+          allowHTML: true,
+      });
+      tippy(".el9", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_811d96ba9764411792c3a27cedd780da~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Smart Thermostat</h3> <p>The Smart Thermostat optimizes your homes heating and cooling system, providing energy savings and comfort. It learns your schedule and preferences, allowing remote control via your smartphone.</p></div></button>',
+         allowHTML: true,
+      });
+      tippy(".el10", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5cafa22883d2414aa84afcf2bfa0ffcd~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Glass Break Detector</h3> <p>The Glass Break Detector enhances your home security by recognizing the sound of breaking glass and triggering an alarm. It helps protect your windows and sliding doors from intruders.</p></div></button>',
+          allowHTML: true,
+      });
+      tippy(".el11", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_060cdd9de14e418cadfd4823fef65fe1~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Indoor Camera</h3> <p>The Indoor Camera offers high-definition video and two-way audio, enabling you to monitor and communicate with your household from anywhere. It features night vision and motion detection for enhanced security.</p></div></button>',
+         allowHTML: true,
+      });
+      tippy(".e20", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        placement: "left",
+        animation: "fade",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5cafa22883d2414aa84afcf2bfa0ffcd~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Door Sensor</h3> <p>The Door Sensor keeps your home secure by alerting you to any unauthorized entry. It monitors the opening and closing of doors, sending real-time notifications to your smartphone.</p></div></button>',
+         allowHTML: true,
+      });
+      tippy(".e21", {
+        arrow: true,
+        hideOnClick: false, maxWidth: 450,
+        animation: "fade",
+        placement: "right",
+        interactive: true,
+        content:
+          '<button class="tooltip_class" onclick="goToContact()" ><img src="https://static.wixstatic.com/media/21fa65_5467f6e497d44f1a93319b6f24ab3de0~mv2.png" alt="" style="max-width: 200px;"  class="img-fluid max-width-400"><div> <h3>Smart Lock</h3> <p>The Smart Lock enhances home security and convenience by allowing you to lock and unlock your door remotely. It features keyless entry, auto-lock capabilities, and integrates seamlessly with your smart home system.</p></div></button>',
+          allowHTML: true,
+      });
+    </script>
+  </body>
+</html>
